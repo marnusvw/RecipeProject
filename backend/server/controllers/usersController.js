@@ -37,5 +37,23 @@ users.post("/", async (req, res) => {
     console.log(err);
   }
 });
+// Delete a user:
+users.delete("/:id", async (req, res) => {
+  console.log(`Deleting user: ${req.params.id}`);
+  try {
+    const deleted = await User.destroy({
+      where: { user_id: req.params.id },
+    });
+
+    if (deleted) {
+      res.status(200).json({ message: "User deleted successfully." });
+    } else {
+      res.status(404).json({ message: "User not found." });
+    }
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Internal server error");
+  }
+});
 
 module.exports = users;

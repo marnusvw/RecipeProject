@@ -1,28 +1,24 @@
-import "./App.css";
-import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
+import {
+  createBrowserRouter,
+  createRoutesFromElements,
+  Route,
+  RouterProvider,
+} from "react-router-dom";
 import Users from "./components/users";
+import HomePage from "./components/homePage";
+
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route path="/" element={<HomePage />}>
+      <Route path="users" element={<Users />} />
+    </Route>
+  )
+);
 
 function App() {
   return (
     <div className="App">
-      <BrowserRouter>
-        <header>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/users">Users</Link>
-            </li>
-          </ul>
-        </header>
-        <main>
-          <Routes>
-            <Route path="/" />
-            <Route path="/users" element={<Users />} />
-          </Routes>
-        </main>
-      </BrowserRouter>
+      <RouterProvider router={router} />
     </div>
   );
 }

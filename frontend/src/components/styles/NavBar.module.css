@@ -1,0 +1,28 @@
+.banner {
+  padding: 1rem;
+}
+
+.navList {
+  list-style-type: none !important; /* removes bullets */
+  padding: 0; /* remove default padding */
+  margin: 0; /* remove default margin */
+  display: flex; /* optional: horizontal menu */
+  gap: 20px; /* optional spacing between items */
+}
+
+.navList li a {
+  color: black; /* default link color */
+  text-decoration: none; /* remove underline */
+}
+
+.navList li a:visited {
+  color: black; /* visited links stay black */
+}
+
+.navList li a:hover {
+  color: blue; /* optional hover color */
+}
+
+.navList li a:active {
+  color: blue; /* optional active color */
+}

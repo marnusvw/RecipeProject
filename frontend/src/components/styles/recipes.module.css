@@ -1,0 +1,22 @@
+.layout {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.card {
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+  margin: 1rem;
+}
+
+.h1 {
+  font-size: 15px;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+}
+.img {
+  width: 150px;
+  height: 150px;
+}

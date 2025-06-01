@@ -14,10 +14,7 @@ function NavBar() {
             <NavLink to="/users">Users</NavLink>
           </li>
           <li>
-            <NavLink to="/users">Users</NavLink>
-          </li>
-          <li>
-            <NavLink to="/users">Users</NavLink>
+            <NavLink to="/recipes">Recipes</NavLink>
           </li>
         </ul>
       </header>

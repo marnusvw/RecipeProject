@@ -14,8 +14,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 // Controllers:
-const booksController = require("./controllers/usersController");
-app.use("/api/users", booksController);
+const usersController = require("./controllers/usersController");
+app.use("/api/users", usersController);
+
+const recipesController = require("./controllers/recipesController");
+app.use("/api/recipes", recipesController);
 
 // Listen:
 app.listen(PORT, () => {

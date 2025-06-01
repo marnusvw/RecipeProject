@@ -1,4 +1,7 @@
-require("dotenv").config();
+require("dotenv").config({
+  path: require("path").resolve(__dirname, "../../../.env"),
+});
+console.log("Loaded DB_USERNAME:", process.env.DB_USERNAME);
 
 module.exports = {
   development: {

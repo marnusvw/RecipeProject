@@ -1,5 +1,5 @@
 require("dotenv").config({
-  path: require("path").resolve(__dirname, "../../../.env"),
+  path: require("path").resolve(__dirname, "../../.env"),
 });
 console.log("Loaded DB_USERNAME:", process.env.DB_USERNAME);
 

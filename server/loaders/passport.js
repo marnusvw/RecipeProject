@@ -1,6 +1,5 @@
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
-const AuthService = require("../services/AuthService");
 
 const AuthService = require("../services/AuthService");
 const AuthServiceInstance = new AuthService();

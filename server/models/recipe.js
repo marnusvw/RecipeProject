@@ -2,18 +2,20 @@ module.exports = (sequelize, DataTypes) => {
   const Recipe = sequelize.define(
     "Recipe",
     {
-      id: {
-        type: DataTypes.UUID,
-        defaultValue: DataTypes.UUIDV4,
+      recipe_id: {
+        type: DataTypes.BIGINT,
         primaryKey: true,
       },
-      title: {
+      recipe_name: {
         type: DataTypes.STRING,
         allowNull: false,
       },
 
-      image_url: {
+      recipe_image: {
         type: DataTypes.TEXT,
+      },
+      recipe_description: {
+        type: DataTypes.STRING,
       },
     },
     {

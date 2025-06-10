@@ -1,7 +1,7 @@
 const axios = require("axios");
 const db = require("./models/index.js");
 const { application } = require("express");
-const { sequelize, Recipe } = db;
+const { sequelize, Recipe, Ingredient } = db;
 const qs = require("qs");
 const { json } = require("sequelize");
 
@@ -33,7 +33,7 @@ const getToken = async () =>
     })
     .catch((err) => console.log(err.response?.data || err.message));
 
-const fetchAndInsert = async () => {
+const fetchAndInsertRecipes = async () => {
   try {
     await sequelize.authenticate();
     console.log("DB Connected");
@@ -55,20 +55,31 @@ const fetchAndInsert = async () => {
       }
     );
 
-    const recipeData = response.data.recipes.recipe.map((recipe) => ({
-      recipe_id: recipe.recipe_id,
-      recipe_name: recipe.recipe_name,
-      recipe_description: recipe.recipe_description,
-      recipe_image: recipe.recipe_image,
-    }));
+    // Get recipes:
+    // const recipeData = response.data.recipes.recipe.map((recipe) => ({
+    //   recipe_id: recipe.recipe_id,
+    //   recipe_name: recipe.recipe_name,
+    //   recipe_description: recipe.recipe_description,
+    //   recipe_image: recipe.recipe_image,
+    // }));
 
-    console.log(recipeData);
-    await Recipe.bulkCreate(recipeData, {
+    // Get recipe ingredients:
+    const recipeIngredients = response.data.recipes.recipe.flatMap((recipe) => {
+      const ingredients = recipe.recipe_ingredients;
+
+      const parsedIngredients = ingredients.ingredient.map((ing) => ({
+        recipe_id: recipe.recipe_id,
+        ingredient: ing,
+      }));
+      return parsedIngredients;
+    });
+
+    await Ingredient.bulkCreate(recipeIngredients, {
       validate: true,
       returning: true,
       ignoreDuplicates: true,
     });
-    console.log(`Inserted ${recipeData.length} recipes successfully`);
+    console.log(`Inserted ${recipeIngredients.length} recipes successfully`);
   } catch (err) {
     console.log(err.message);
   } finally {
@@ -76,4 +87,4 @@ const fetchAndInsert = async () => {
   }
 };
 
-fetchAndInsert();
+fetchAndInsertRecipes();

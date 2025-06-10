@@ -23,12 +23,5 @@ module.exports = (app) => {
     })
   );
 
-  // Controllers:
-  const usersController = require("../controllers/usersController");
-  app.use("/api/users", usersController);
-
-  const recipesController = require("../controllers/recipesController");
-  app.use("/api/recipes", recipesController);
-
   return app;
 };

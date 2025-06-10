@@ -1,4 +1,4 @@
-const router = requrie("express").Router();
+const router = require("express").Router();
 
 // Instantiate Service:
 const AuthService = require("../services/AuthService");

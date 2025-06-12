@@ -14,3 +14,23 @@
     transform: rotate(360deg);
   }
 }
+
+.ingredients_box {
+  justify-content: flex-start;
+  display: inherit;
+  padding-top: 1rem;
+  list-style-type: circle;
+}
+.recipe_container {
+  display: flex;
+  justify-content: center;
+  border: 1rem solid black;
+}
+.recipe {
+  display: flex;
+  flex-direction: column;
+}
+
+h1 {
+  margin-bottom: 2rem;
+}

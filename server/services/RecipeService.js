@@ -13,7 +13,7 @@ module.exports = class RecipeService {
     try {
       const foundRecipe = await Recipe.findOne({
         where: { recipe_name },
-        include: [{ model: Ingredient }],
+        include: [{ model: Ingredient, as: "ingredients" }],
       });
       if (!foundRecipe) {
         throw createError(404);

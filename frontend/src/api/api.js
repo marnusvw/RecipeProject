@@ -18,3 +18,10 @@ export const getAllRecipes = async () => {
 
   return jsonResponse;
 };
+
+export const getRecipeByName = async (recipe_name) => {
+  const response = await fetch(`${API_ENDPOINT}/recipes/${recipe_name}`);
+  const jsonResponse = await response.json();
+
+  return jsonResponse;
+};

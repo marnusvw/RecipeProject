@@ -47,4 +47,8 @@ Object.keys(db).forEach((modelName) => {
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
+// Add foreign key associations:
+db.Recipe.hasMany(db.Ingredient, { foreignKey: "recipe_id" });
+db.Ingredient.belongsTo(db.Recipe, { foreignKey: "recipe_id" });
+
 module.exports = db;

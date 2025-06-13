@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { registerUser } from "../api/api";
 import { useNavigate } from "react-router-dom";
+
 function Registration() {
   const [formData, setFormData] = useState({
     firstName: "",
@@ -15,7 +16,6 @@ function Registration() {
       ...formData,
       [e.target.name]: e.target.value,
     });
-    console.log(formData);
   };
 
   const handlesubmit = async (e) => {

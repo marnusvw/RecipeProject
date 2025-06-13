@@ -11,26 +11,34 @@ module.exports = (app) => {
 
   // Set method to serialize data to store in a cookie:
   passport.serializeUser((user, done) => {
-    done(null, user.user_id);
+    done(null, user.foundUser.user_id);
   });
 
   // Set method to deserialize data stored in a cookie and attach it to req.user:
-  passport.deserializeUser((user_id, done) => {
-    done(null, { user_id });
+  passport.deserializeUser((user, done) => {
+    done(null, user.foundUser.user_id);
   });
 
   // Configure local strategy to be used for local login:
   passport.use(
-    new LocalStrategy(async (username, password, done) => {
-      try {
-        const user = await AuthServiceInstance.login({
-          email: username,
-          password,
-        });
-      } catch (err) {
-        return done(err);
+    new LocalStrategy(
+      { usernameField: "email" },
+      async (email, password, done) => {
+        try {
+          const user = await AuthServiceInstance.login({
+            email,
+            password,
+          });
+
+          if (!user) {
+            return done(null, false, { message: "Invalid email or password" });
+          }
+          return done(null, user);
+        } catch (err) {
+          return done(null, false, { message: err.message || "Login failed" });
+        }
       }
-    })
+    )
   );
   return passport;
 };

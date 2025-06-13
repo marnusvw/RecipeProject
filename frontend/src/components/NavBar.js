@@ -14,6 +14,9 @@ function NavBar() {
           <li>
             <NavLink to="/recipes">Recipes</NavLink>
           </li>
+          <li>
+            <NavLink to="/register">Sign up </NavLink>
+          </li>
         </ul>
       </header>
     </div>

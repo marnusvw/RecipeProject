@@ -2,7 +2,7 @@ import React from "react";
 import { Outlet } from "react-router-dom";
 
 import styles from "./styles/homePage.module.css";
-import NavBar from "../components/NavBar";
+import NavBar from "./NavBar";
 
 function HomePage() {
   return (

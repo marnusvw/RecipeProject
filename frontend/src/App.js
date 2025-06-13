@@ -4,10 +4,9 @@ import {
   Route,
   RouterProvider,
 } from "react-router-dom";
-import HomePage from "./components/homePage";
-import Recipes from "./components/recipes";
+import HomePage from "./components/HomePage";
+import Recipes from "./components/Recipes";
 import RecipesPage from "./components/RecipesPage";
-
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<HomePage />}>

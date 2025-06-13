@@ -53,3 +53,24 @@ export const registerUser = async (userData) => {
     console.log(err);
   }
 };
+
+// Login an existing user:
+
+export const loginUser = async (userData) => {
+  try {
+    const response = await fetch(`${API_ENDPOINT}/auth/login`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(userData),
+    });
+
+    if (!response.ok) {
+      const error = await response.json();
+      return { success: false, message: error.message || "Login failed" };
+    }
+    const data = response.json();
+    return data;
+  } catch (err) {
+    console.log(err);
+  }
+};

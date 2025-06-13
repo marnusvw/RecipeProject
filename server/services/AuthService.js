@@ -43,7 +43,7 @@ module.exports = class AuthService {
       if (!isMatch) {
         throw createError(401, "Incorrect password or email");
       }
-      return foundUser;
+      return { success: true, foundUser: foundUser };
     } catch (err) {
       throw createError(500, err.message || err);
     }

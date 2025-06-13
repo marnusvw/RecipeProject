@@ -24,14 +24,7 @@ module.exports = (app, passport) => {
     passport.authenticate("local"),
     async (req, res, next) => {
       try {
-        const { username, password } = req.body;
-
-        const response = await AuthServiceInstance.login({
-          email: username,
-          password,
-        });
-
-        res.status(200).send(response);
+        res.status(200).send({ success: true, user: req.user });
       } catch (err) {
         next(err);
       }

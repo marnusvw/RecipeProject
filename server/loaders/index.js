@@ -13,6 +13,6 @@ module.exports = async (app) => {
 
   app.use((err, req, res, next) => {
     const { message, status } = err;
-    return res.status(status).send({ message });
+    return res.status(status || 587).send({ message });
   });
 };

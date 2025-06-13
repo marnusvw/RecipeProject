@@ -2,7 +2,6 @@ import { useState } from "react";
 import { registerUser } from "../api/api";
 import { useNavigate } from "react-router-dom";
 function Registration() {
-  const [success, setSuccess] = useState(false);
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",

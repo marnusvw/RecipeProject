@@ -25,7 +25,7 @@ function Registration() {
       const response = await registerUser(formData);
 
       if (response.success) {
-        navigate("/");
+        navigate("/login");
       }
     } catch (err) {
       throw new Error(err.message);

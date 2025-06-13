@@ -7,9 +7,12 @@ import {
 import HomePage from "./components/HomePage";
 import Recipes from "./components/Recipes";
 import RecipesPage from "./components/RecipesPage";
+import Registration from "./components/Registration";
+
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<HomePage />}>
+      <Route path="/register" element={<Registration />} />
       <Route path="recipes" element={<Recipes />} />
       <Route path="recipes/:recipe_name" element={<RecipesPage />} />
     </Route>

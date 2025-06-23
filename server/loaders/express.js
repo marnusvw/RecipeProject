@@ -5,7 +5,12 @@ const path = require("path");
 require("dotenv").config({ path: path.resolve(__dirname, "../../.env") });
 
 module.exports = (app) => {
-  app.use(cors());
+  app.use(
+    cors({
+      origin: "http://localhost:3000",
+      credentials: true,
+    })
+  );
   app.use(express.json());
   app.use(express.urlencoded({ extended: false }));
 
@@ -13,15 +18,15 @@ module.exports = (app) => {
 
   app.use(
     session({
-      secret: process.env.SESSION_SECRET,
+      secret: process.env.SESSION_SECRET || "defaultSecret",
       resave: false,
       saveUninitialized: false,
       cookie: {
-        secure: false,
-        maxAge: 60 * 100 * 60 * 24,
+        httpOnly: true,
+        secure: false, // set to true if using HTTPS
+        maxAge: 24 * 60 * 60 * 1000, // 1 day
       },
     })
   );
-
   return app;
 };

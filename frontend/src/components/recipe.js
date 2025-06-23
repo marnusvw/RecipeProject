@@ -1,7 +1,16 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styles from "./styles/recipes.module.css";
+import { AuthContext } from "../context/AuthContext";
+import { useContext, useEffect } from "react";
 
 function Recipe({ recipe }) {
+  const { loggedIn } = useContext(AuthContext);
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (!loggedIn) {
+      navigate("/register");
+    }
+  }, [loggedIn, navigate]);
   return (
     <Link to={`/recipes/${recipe.recipe_name}`}>
       <div className={styles.card}>

@@ -2,13 +2,17 @@ import { useState } from "react";
 import { loginUser } from "../api/api";
 import { useNavigate } from "react-router-dom";
 
+import { useContext } from "react";
+import { AuthContext } from "../context/AuthContext";
+
 function Login() {
+  const { loggedIn, login } = useContext(AuthContext);
+
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
   const navigate = useNavigate();
-
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -20,14 +24,17 @@ function Login() {
 
     try {
       const response = await loginUser(formData);
-      console.log("Login response: ", response);
-      if (response.success) {
+      if (response.loggedIn) {
+        login(formData);
         navigate("/");
       }
     } catch (err) {
       console.log(err);
     }
   };
+  if (loggedIn) {
+    navigate("/");
+  }
   return (
     <div>
       <form onSubmit={handleSubmit}>

@@ -20,7 +20,7 @@ module.exports = class AuthService {
       data.password = hashedPassword;
       const newUser = await User.create(data);
       console.log("New User: ", newUser);
-      return { success: true, user: newUser };
+      return newUser;
     } catch (err) {
       throw createError(500, err.message || err);
     }
@@ -43,7 +43,7 @@ module.exports = class AuthService {
       if (!isMatch) {
         throw createError(401, "Incorrect password or email");
       }
-      return { success: true, foundUser: foundUser };
+      return foundUser;
     } catch (err) {
       throw createError(500, err.message || err);
     }

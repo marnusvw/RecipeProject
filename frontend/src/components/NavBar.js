@@ -1,8 +1,16 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import styles from "./styles/NavBar.module.css";
+import { useContext } from "react";
+import { AuthContext } from "../context/AuthContext";
 
-function NavBar() {
+function NavBar({ loggedIn }) {
+  const { logout } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    console.log("Logging out");
+    logout();
+    navigate("/");
+  };
   return (
     <div className={styles.banner}>
       <header>
@@ -10,13 +18,27 @@ function NavBar() {
           <li>
             <NavLink to="/">Home</NavLink>
           </li>
-
           <li>
             <NavLink to="/recipes">Recipes</NavLink>
           </li>
-          <li>
-            <NavLink to="/register">Sign up </NavLink>
-          </li>
+          {!loggedIn ? (
+            <>
+              <li>
+                <NavLink to="/register">Sign up </NavLink>
+              </li>
+              <li>
+                <NavLink to="/login">Login</NavLink>
+              </li>
+            </>
+          ) : (
+            <>
+              <li>
+                <button type="submit" onClick={handleLogout}>
+                  Log Out
+                </button>
+              </li>
+            </>
+          )}
         </ul>
       </header>
     </div>

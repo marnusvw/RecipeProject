@@ -60,15 +60,36 @@ export const loginUser = async (userData) => {
   try {
     const response = await fetch(`${API_ENDPOINT}/auth/login`, {
       method: "POST",
+      credentials: "include",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(userData),
     });
-
+    console.log(response);
     if (!response.ok) {
       const error = await response.json();
       return { success: false, message: error.message || "Login failed" };
     }
     const data = await response.json();
+    return data;
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+// Check if a user is logged in:
+export const checkLogin = async () => {
+  try {
+    const res = await fetch(`${API_ENDPOINT}/auth/session`, {
+      method: "GET",
+      credentials: "include",
+    });
+
+    if (!res.ok) {
+      throw new Error("Failed to check session");
+    }
+    const data = await res.json();
+
+    console.log("Session Data: ", data);
     return data;
   } catch (err) {
     console.log(err);

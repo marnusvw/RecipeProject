@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { Outlet } from "react-router-dom";
 
 import styles from "./styles/homePage.module.css";

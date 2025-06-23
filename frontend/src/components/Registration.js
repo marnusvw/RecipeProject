@@ -34,7 +34,7 @@ function Registration() {
   return (
     <div>
       <form onSubmit={handlesubmit}>
-        <label for="email">Email</label>
+        <label htmlFor="email">Email</label>
         <input
           type="text"
           id="email"
@@ -43,7 +43,7 @@ function Registration() {
           name="email"
         ></input>
         <br />
-        <label for="firstName">firstName</label>
+        <label htmlFor="firstName">firstName</label>
         <input
           type="text"
           id="firstName"
@@ -52,7 +52,7 @@ function Registration() {
           name="firstName"
         ></input>
         <br />
-        <label for="lastName">lastName</label>
+        <label htmlFor="lastName">lastName</label>
         <input
           type="text"
           id="lastName"
@@ -61,11 +61,10 @@ function Registration() {
           name="lastName"
         ></input>
         <br />
-        <label for="password">password</label>
+        <label htmlFor="password">password</label>
         <input
           type="text"
           id="password"
-          pas
           value={formData.password}
           onChange={handleChange}
           name="password"

@@ -64,7 +64,7 @@ export const loginUser = async (userData) => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(userData),
     });
-    console.log(response);
+
     if (!response.ok) {
       const error = await response.json();
       return { success: false, message: error.message || "Login failed" };
@@ -89,7 +89,6 @@ export const checkLogin = async () => {
     }
     const data = await res.json();
 
-    console.log("Session Data: ", data);
     return data;
   } catch (err) {
     console.log(err);

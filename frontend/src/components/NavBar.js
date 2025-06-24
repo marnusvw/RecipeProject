@@ -6,36 +6,64 @@ import { AuthContext } from "../context/AuthContext";
 function NavBar({ loggedIn }) {
   const { logout } = useContext(AuthContext);
   const navigate = useNavigate();
-  const handleLogout = () => {
-    console.log("Logging out");
-    logout();
-    navigate("/");
+
+  // Logout current user:
+  const handleLogout = (e) => {
+    e.preventDefault(); // prevent actual link navigation
+    logout(); // clear context/session
+    navigate("/"); // redirect manually
   };
   return (
-    <div className={styles.banner}>
-      <header>
-        <ul className={styles.navList}>
+    <div>
+      <header className={styles.navWrapper}>
+        <ul className={styles.navLeft}>
           <li>
-            <NavLink to="/">Home</NavLink>
+            <NavLink
+              to="/"
+              className={({ isActive }) => (isActive ? styles.active : "")}
+            >
+              Home
+            </NavLink>
           </li>
           <li>
-            <NavLink to="/recipes">Recipes</NavLink>
+            <NavLink
+              to="/recipes"
+              className={({ isActive }) => (isActive ? styles.active : "")}
+            >
+              Recipes
+            </NavLink>
           </li>
+        </ul>
+        <ul className={styles.navRight}>
           {!loggedIn ? (
             <>
               <li>
-                <NavLink to="/register">Sign up </NavLink>
+                <NavLink
+                  to="/register"
+                  className={({ isActive }) => (isActive ? styles.active : "")}
+                >
+                  Sign up{" "}
+                </NavLink>
               </li>
               <li>
-                <NavLink to="/login">Login</NavLink>
+                <NavLink
+                  to="/login"
+                  className={({ isActive }) => (isActive ? styles.active : "")}
+                >
+                  Login
+                </NavLink>
               </li>
             </>
           ) : (
             <>
               <li>
-                <button type="submit" onClick={handleLogout}>
-                  Log Out
-                </button>
+                <NavLink
+                  to="/"
+                  onClick={handleLogout}
+                  className={styles.logout}
+                >
+                  Logout
+                </NavLink>
               </li>
             </>
           )}

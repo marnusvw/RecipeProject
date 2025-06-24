@@ -7,4 +7,5 @@ module.exports = (app, passport) => {
   authRouter(app, passport);
   userRouter(app);
   recipeRouter(app);
+  test(app);
 };

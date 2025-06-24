@@ -1,6 +1,13 @@
-.layout {
+.outer_contaier {
   display: flex;
-  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  width: 80vw;
+  gap: 1rem;
 }
 
 .card {
@@ -10,8 +17,13 @@
   align-items: center;
   padding: 1rem;
   margin: 1rem;
+  width: 20vw;
+  transition: box-shadow 0.3s ease;
 }
 
+.card:hover {
+  box-shadow: 6px 6px 6px 2px rgba(0, 0, 0, 0.5);
+}
 .h1 {
   font-size: 15px;
   font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;

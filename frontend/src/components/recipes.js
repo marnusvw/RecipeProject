@@ -16,10 +16,12 @@ export default function Recipes() {
   }, []);
 
   return (
-    <div className={styles.layout}>
-      {recipes.map((recipe, index) => (
-        <Recipe key={index} recipe={recipe} />
-      ))}
+    <div className={styles.outer_contaier}>
+      <div className={styles.layout}>
+        {recipes.map((recipe, index) => (
+          <Recipe key={index} recipe={recipe} />
+        ))}
+      </div>
     </div>
   );
 }

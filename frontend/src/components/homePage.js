@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { Outlet } from "react-router-dom";
 
-import styles from "./styles/homePage.module.css";
+import styles from "./styles/HomePage.module.css";
 import NavBar from "./NavBar";
 import { AuthContext } from "../context/AuthContext";
 

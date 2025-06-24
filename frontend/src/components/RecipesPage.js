@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getRecipeByName } from "../api/api";
-import styles from "./styles/recipesPage.module.css";
+import styles from "./styles/RecipesPage.module.css";
 
 function RecipesPage() {
   const { recipe_name } = useParams();

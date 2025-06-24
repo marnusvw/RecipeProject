@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { getAllRecipes } from "../api/api";
 import Recipe from "./Recipe";
-import styles from "./styles/recipes.module.css";
+import styles from "./styles/Recipes.module.css";
 
 export default function Recipes() {
   const [recipes, setRecipes] = useState([]);

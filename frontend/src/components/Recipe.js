@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import styles from "./styles/recipes.module.css";
+import styles from "./styles/Recipes.module.css";
 import { AuthContext } from "../context/AuthContext";
 import { useContext, useEffect } from "react";
 

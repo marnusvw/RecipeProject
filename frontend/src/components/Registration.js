@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { registerUser } from "../api/api";
 import { useNavigate } from "react-router-dom";
+import styles from "./styles/Registration.module.css";
 
 function Registration() {
   const [formData, setFormData] = useState({
@@ -9,7 +10,13 @@ function Registration() {
     email: "",
     password: "",
   });
+  const [showPassword, setShowPassword] = useState(false);
+
   const navigate = useNavigate();
+
+  const togglePassword = () => {
+    setShowPassword((prev) => !prev);
+  };
 
   const handleChange = (e) => {
     setFormData({
@@ -32,44 +39,69 @@ function Registration() {
   };
 
   return (
-    <div>
-      <form onSubmit={handlesubmit}>
-        <label htmlFor="email">Email</label>
+    <div className={styles.container}>
+      <form onSubmit={handlesubmit} className={styles.form}>
+        <label htmlFor="email" className={styles.label}>
+          Email
+        </label>
         <input
           type="text"
           id="email"
           value={formData.email}
           onChange={handleChange}
           name="email"
+          className={styles.input}
         ></input>
         <br />
-        <label htmlFor="firstName">firstName</label>
+        <label htmlFor="firstName" className={styles.label}>
+          FirstName
+        </label>
         <input
           type="text"
           id="firstName"
           value={formData.firstName}
           onChange={handleChange}
           name="firstName"
+          className={styles.input}
         ></input>
         <br />
-        <label htmlFor="lastName">lastName</label>
+        <label htmlFor="lastName" className={styles.label}>
+          LastName
+        </label>
         <input
           type="text"
           id="lastName"
           value={formData.lastName}
           onChange={handleChange}
           name="lastName"
+          className={styles.input}
         ></input>
         <br />
-        <label htmlFor="password">password</label>
-        <input
-          type="text"
-          id="password"
-          value={formData.password}
-          onChange={handleChange}
-          name="password"
-        ></input>
-        <button type="submit">Submit</button>
+        <div className={styles.password_wrapper}>
+          <label htmlFor="password" className={styles.label}>
+            Password
+          </label>
+          <input
+            type="password"
+            id="password"
+            value={formData.password}
+            onChange={handleChange}
+            name="password"
+            className={styles.input}
+          ></input>
+          <span
+            onClick={togglePassword}
+            className={styles.icon}
+            role="button"
+            aria-label="Toggle password visibility"
+          >
+            {showPassword ? "🙈" : "👁️"}
+          </span>
+        </div>
+        <br />
+        <button type="submit" className={styles.button}>
+          Submit
+        </button>
       </form>
     </div>
   );

@@ -12,7 +12,6 @@ function RecipesPage() {
     const findRecipe = async () => {
       try {
         const recipe = await getRecipeByName(recipe_name);
-        console.log("Recipe: ", recipe);
         setRecipe(recipe);
       } catch (err) {
         throw new Error(err);

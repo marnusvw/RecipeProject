@@ -19,7 +19,6 @@ module.exports = class AuthService {
       const hashedPassword = await bcrypt.hash(data.password, SALT_ROUNDS);
       data.password = hashedPassword;
       const newUser = await User.create(data);
-      console.log("New User: ", newUser);
       return newUser;
     } catch (err) {
       throw createError(500, err.message || err);

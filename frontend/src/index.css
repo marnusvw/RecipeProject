@@ -3,9 +3,9 @@
   padding: 0;
 }
 :root {
-  --global-primary: salmon;
-  --global-secondary: white;
-  --global-button: rgb(247, 178, 170);
+  --global-primary: hsla(240, 12%, 90%, 0.9);
+  --global-secondary: rgb(250, 246, 246);
+  --global-button: rgb(252, 251, 251);
 }
 
 body {

@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useState, useContext, useEffect } from "react";
 import { registerUser } from "../api/api";
 import { useNavigate } from "react-router-dom";
 import styles from "./styles/Registration.module.css";
-
+import { AuthContext } from "../context/AuthContext";
 function Registration() {
   const [formData, setFormData] = useState({
     firstName: "",
@@ -11,8 +11,14 @@ function Registration() {
     password: "",
   });
   const [showPassword, setShowPassword] = useState(false);
-
+  const { loggedIn, login } = useContext(AuthContext);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (loggedIn) {
+      navigate("/");
+    }
+  });
 
   const togglePassword = () => {
     setShowPassword((prev) => !prev);
@@ -29,9 +35,9 @@ function Registration() {
     e.preventDefault();
     try {
       const response = await registerUser(formData);
-
       if (response.success) {
-        navigate("/login");
+        login(formData);
+        navigate("/");
       }
     } catch (err) {
       throw new Error(err.message);
@@ -54,7 +60,7 @@ function Registration() {
         ></input>
         <br />
         <label htmlFor="firstName" className={styles.label}>
-          FirstName
+          First Name
         </label>
         <input
           type="text"
@@ -66,7 +72,7 @@ function Registration() {
         ></input>
         <br />
         <label htmlFor="lastName" className={styles.label}>
-          LastName
+          Last Name
         </label>
         <input
           type="text"
@@ -82,7 +88,7 @@ function Registration() {
             Password
           </label>
           <input
-            type="password"
+            type={showPassword ? "text" : "password"}
             id="password"
             value={formData.password}
             onChange={handleChange}

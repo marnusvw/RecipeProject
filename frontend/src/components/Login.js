@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
+import styles from "./styles/Login.module.css";
 
 function Login() {
   const { loggedIn, login } = useContext(AuthContext);
@@ -12,7 +13,15 @@ function Login() {
     email: "",
     password: "",
   });
+
+  const [showPassword, setShowPassword] = useState(false);
+
   const navigate = useNavigate();
+
+  const togglePassword = () => {
+    setShowPassword((prev) => !prev);
+  };
+
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -36,26 +45,45 @@ function Login() {
     navigate("/");
   }
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="email">Email</label>
+    <div className={styles.container}>
+      <form onSubmit={handleSubmit} className={styles.form}>
+        <label htmlFor="email" className={styles.label}>
+          Email
+        </label>
         <input
           type="text"
           value={formData.email}
           id="email"
           name="email"
           onChange={handleChange}
+          className={styles.input}
         />
         <br />
-        <label htmlFor="password">Password</label>
-        <input
-          type="text"
-          value={formData.password}
-          id="password"
-          name="password"
-          onChange={handleChange}
-        />
-        <button type="submit">Submit</button>
+        <div className={styles.password_wrapper}>
+          <label htmlFor="password" className={styles.label}>
+            Password
+          </label>
+          <input
+            type={showPassword ? "text" : "password"}
+            id="password"
+            value={formData.password}
+            onChange={handleChange}
+            name="password"
+            className={styles.input}
+          ></input>
+          <span
+            onClick={togglePassword}
+            className={styles.icon}
+            role="button"
+            aria-label="Toggle password visibility"
+          >
+            {showPassword ? "🙈" : "👁️"}
+          </span>
+        </div>
+        <br />
+        <button type="submit" className={styles.button}>
+          Login
+        </button>
       </form>
     </div>
   );

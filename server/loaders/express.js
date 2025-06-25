@@ -5,12 +5,24 @@ const path = require("path");
 require("dotenv").config({ path: path.resolve(__dirname, "../../.env") });
 
 module.exports = (app) => {
+  const allowedOrigins = [
+    "http://localhost:3000",
+    "https://recipe-project-tvqz.vercel.app", // Your deployed frontend
+  ];
+
   app.use(
     cors({
-      origin: "https://recipe-project-tvqz.vercel.app",
+      origin: function (origin, callback) {
+        if (!origin || allowedOrigins.includes(origin)) {
+          callback(null, true);
+        } else {
+          callback(new Error("Not allowed by CORS"));
+        }
+      },
       credentials: true,
     })
   );
+
   app.use(express.json());
   app.use(express.urlencoded({ extended: false }));
 

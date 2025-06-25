@@ -7,7 +7,7 @@ require("dotenv").config({ path: path.resolve(__dirname, "../../.env") });
 module.exports = (app) => {
   app.use(
     cors({
-      origin: "http://localhost:3000",
+      origin: "https://recipe-project-tvqz.vercel.app",
       credentials: true,
     })
   );

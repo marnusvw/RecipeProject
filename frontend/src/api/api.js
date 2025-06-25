@@ -48,7 +48,7 @@ export const registerUser = async (userData) => {
 
     const data = await response.json();
 
-    return data;
+    return { success: true, ...data };
   } catch (err) {
     console.log(err);
   }

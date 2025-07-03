@@ -5,6 +5,7 @@
 }
 .form {
   justify-items: flex-end;
+  height: 15rem;
 }
 .label {
   display: inline-flex;
@@ -50,4 +51,9 @@
 }
 .icon:hover {
   cursor: pointer;
+}
+.login_redirect {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: space-between;
 }

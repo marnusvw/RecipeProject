@@ -1,6 +1,6 @@
 import { useState, useContext, useEffect } from "react";
 import { registerUser } from "../api/api";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import styles from "./styles/Registration.module.css";
 import { AuthContext } from "../context/AuthContext";
 function Registration() {
@@ -12,6 +12,8 @@ function Registration() {
   });
   const [showPassword, setShowPassword] = useState(false);
   const { loggedIn, login } = useContext(AuthContext);
+  const [errorMessage, setErrorMessage] = useState("");
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -40,7 +42,9 @@ function Registration() {
         navigate("/");
       }
     } catch (err) {
-      throw new Error(err.message);
+      if (err.message == "Error: Email already in use") {
+        setErrorMessage(err.message);
+      }
     }
   };
 
@@ -104,11 +108,22 @@ function Registration() {
             {showPassword ? "🙈" : "👁️"}
           </span>
         </div>
+        {errorMessage && <p className={styles.error}>{errorMessage}</p>}
+
         <br />
         <button type="submit" className={styles.button}>
           Submit
         </button>
       </form>
+
+      <span>
+        <ul className={styles.login_redirect}>
+          <li>Already signed up?</li>
+          <li>
+            <NavLink to="/login">login</NavLink>
+          </li>
+        </ul>
+      </span>
     </div>
   );
 }

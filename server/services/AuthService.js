@@ -21,6 +21,12 @@ module.exports = class AuthService {
       const newUser = await User.create(data);
       return newUser;
     } catch (err) {
+      // If it's an http error (like 409), rethrow it directly
+      if (err.status) {
+        throw err;
+      }
+
+      // Otherwise wrap it in a 500
       throw createError(500, err.message || err);
     }
   }

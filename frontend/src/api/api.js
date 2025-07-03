@@ -40,17 +40,14 @@ export const registerUser = async (userData) => {
 
     if (!response.ok) {
       const error = await response.json();
-      return {
-        success: false,
-        message: error.message || "Registration failed",
-      };
+      throw new Error(error.message || "Registration failed");
     }
 
     const data = await response.json();
 
     return { success: true, ...data };
   } catch (err) {
-    console.log(err);
+    throw new Error(err);
   }
 };
 

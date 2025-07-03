@@ -3,6 +3,17 @@
   display: flex; /* optional: horizontal menu */
   gap: 20px; /* optional spacing between items */
   justify-content: space-between;
+  align-items: center;
+  background-color: var(--global-navbar);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.logo {
+  width: 4rem;
+  border-radius: 15%;
 }
 
 .navLeft,
